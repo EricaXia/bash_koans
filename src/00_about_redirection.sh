@@ -6,7 +6,7 @@ test_redirecting_stdout_to_file() {
 
   local contents=$(cat tmp/redirect_test.txt)
 
-  assertEqual "$contents" __
+  assertEqual "$contents" "out to stdout"
 
 }
 
@@ -15,7 +15,7 @@ test_redirecting_stderr_to_file() {
 
   local contents=$(cat tmp/redirect_test2.txt)
 
-  assertEqual "$contents" __
+  assertEqual "$contents" "out to stderr"
 }
 
 test_redirecting_stdout_to_stderr() {
@@ -23,7 +23,7 @@ test_redirecting_stdout_to_stderr() {
 
   local contents=$(cat tmp/redirect_test3.txt)
 
-  assertEqual "$contents" __
+  assertEqual "$contents" "out to stdout"
 
 }
 
@@ -32,7 +32,7 @@ test_redirecting_stderr_to_stdout() {
 
   local contents=$(cat tmp/redirect_test4.txt)
 
-  assertEqual "$contents" __
+  assertEqual "$contents" "out to stderr"
 
 }
 
@@ -42,7 +42,7 @@ test_redirecting_stdout_and_stderr_to_file() {
   local contents5=$(cat tmp/redirect_test5.txt)
   local contents6=$(cat tmp/redirect_test6.txt)
 
-  assertEqual "$contents5" __
-  assertEqual "$contents6" __
+  assertEqual "$contents5" "out to stdout"
+  assertEqual "$contents6" "out to stderr"
 
 }

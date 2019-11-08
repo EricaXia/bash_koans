@@ -10,21 +10,21 @@ test_escape_character() {
     EXAMPLE=Use_no_escape_here_in_this_exam\
 ple
 
-    assertEqual $EXAMPLE __
+    assertEqual $EXAMPLE Use_no_escape_here_in_this_example
 }
 
 # =============================================================================
 # Sensei advice: Use single quotes in this function asserts
 test_single_quotes() {
-    assertEqual single\ quotes    single quotes
+    assertEqual single\ quotes   'single quotes'
     # -------------------------------------------------------------------------
-    assertEqual dollar_\$        'dollar_\$'
+    assertEqual dollar_\$        'dollar_$'
     # -------------------------------------------------------------------------
-    assertEqual Double_Quotes_\" 'Double_Quotes_\"'
+    assertEqual Double_Quotes_\" 'Double_Quotes_"'
     # -------------------------------------------------------------------------
-    assertEqual backslash_\\     'backslash_\\'
+    assertEqual backslash_\\     'backslash_\'
     # -------------------------------------------------------------------------
-    assertEqual All_of_the_above_with_single_quotes\ \$\"\\ 'All_of_the_above_with_single_quotes__'
+    assertEqual All_of_the_above_with_single_quotes\ \$\"\\ 'All_of_the_above_with_single_quotes $"\'
 }
 
 # =============================================================================
@@ -33,16 +33,16 @@ test_double_quotes() {
     local D
     local EXAMPLE
 
-    assertEqual between_double\ quotes    between_double quotes
+    assertEqual between_double\ quotes    "between_double quotes"
     # -------------------------------------------------------------------------
     D=nope
-    assertEqual dollar_\$D        "dollar_$D"
+    assertEqual dollar_\$D        "dollar_\$D"
     # -------------------------------------------------------------------------
     EXAMPLE=this_is_a_variable
-    assertEqual example_$EXAMPLE  "example_\$EXAMPLE"
+    assertEqual example_$EXAMPLE  "example_$EXAMPLE"
     # -------------------------------------------------------------------------
-    assertEqual ".don't use backticks." ".`echo use backticks`."
-    assertEqual ".use this instead."    ".$(echo don\'t use this instead)."
+    assertEqual ".don't use backticks." ".don't use backticks."
+    assertEqual ".use this instead."    ".$(echo 'use this instead')."
     # -------------------------------------------------------------------------
     assertEqual Single_Quotes_\' "Single_Quotes_''"
     # -------------------------------------------------------------------------
